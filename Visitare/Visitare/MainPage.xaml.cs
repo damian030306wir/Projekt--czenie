@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -29,7 +32,7 @@ namespace Visitare
         {
             await Navigation.PushAsync(new ProfilePage());
         }
-        private void OnMapClicked(object sender, MapClickedEventArgs e)
+        public async void OnMapClicked(object sender, MapClickedEventArgs e)
         {
             CustomPin pin = new CustomPin
             {
@@ -53,7 +56,25 @@ namespace Visitare
             };
             customMap.CustomPins = new List<CustomPin> { pin };
             customMap.Pins.Add(pin);
+
+
+            var json = JsonConvert.SerializeObject(new { X =  pin.Position.Latitude, Y = pin.Position.Longitude });
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpClient client = new HttpClient();
+
+            var result = await client.PostAsync("http://dearjean.ddns.net:44201/api/Points", content);
+
+            if (result.StatusCode == HttpStatusCode.Created)
+            {
+                await DisplayAlert("Komunikat", "Dodanie puntku przebiegło pomyślnie", "Anuluj");
+            }
+
+
         }
+
+
         private void OnClearClicked(object sender, EventArgs e)
         {
             customMap.Pins.Clear();
