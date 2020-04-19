@@ -20,7 +20,8 @@
         </StackLayout>
         <StackLayout HeightRequest="400">
             <local:CustomMap x:Name="customMap" Margin="2" IsShowingUser="true" MapClicked="OnMapClicked">
-                
+    
+
             </local:CustomMap>
        
         <Entry x:Name="nazwaEntry" Placeholder="Podaj nazwę punktu:" FontSize="Small" />

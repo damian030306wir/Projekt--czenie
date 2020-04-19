@@ -23,6 +23,7 @@ namespace Visitare.Droid
 
         public CustomMapRenderer(Context context) : base(context)
         {
+            
         }
 
         protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
@@ -43,6 +44,7 @@ namespace Visitare.Droid
 
         protected override void OnMapReady(GoogleMap map)
         {
+            
             base.OnMapReady(map);
 
             NativeMap.InfoWindowClick += OnInfoWindowClick;

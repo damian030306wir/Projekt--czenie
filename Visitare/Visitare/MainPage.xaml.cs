@@ -21,6 +21,7 @@ namespace Visitare
         public ObservableCollection<Position> positions = new ObservableCollection<Position>();
         public MainPage()
         {
+            
             InitializeComponent();
         }
         private async void OnLogOut(object sender, EventArgs e)
@@ -32,8 +33,10 @@ namespace Visitare
         {
             await Navigation.PushAsync(new ProfilePage());
         }
+
         public async void OnMapClicked(object sender, MapClickedEventArgs e)
         {
+            
             CustomPin pin = new CustomPin
             {
                 Type = PinType.SavedPin,
@@ -50,8 +53,9 @@ namespace Visitare
                 args.HideInfoWindow = true;
                 string pinName = ((CustomPin)s).Label;
                 string pytanie = ((CustomPin)s).Question;
+                string odpowiedz = ((CustomPin)s).Answer;
                 await DisplayAlert("Pin Clicked", $"{pinName} was clicked.", "Ok");
-                string result = await DisplayPromptAsync("Zagadka", $"{pytanie}", initialValue: "10", maxLength: 2, keyboard: Keyboard.Numeric);
+                string result = await DisplayPromptAsync("Zagadka", $"{pytanie}", initialValue: odpowiedz, maxLength: 2, keyboard: Keyboard.Numeric);
 
             };
             customMap.CustomPins = new List<CustomPin> { pin };
