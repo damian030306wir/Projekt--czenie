@@ -48,14 +48,16 @@ namespace Visitare
                 Question = zagadkaEntry.Text,
                 Answer = odpowiedzEntry.Text
             };
+          
             pin.MarkerClicked += async (s, args) =>
             {
                 args.HideInfoWindow = true;
                 string pinName = ((CustomPin)s).Label;
-                string pytanie = ((CustomPin)s).Question;
-                string odpowiedz = ((CustomPin)s).Answer;
-                await DisplayAlert("Pin Clicked", $"{pinName} was clicked.", "Ok");
-                string result = await DisplayPromptAsync("Zagadka", $"{pytanie}", initialValue: odpowiedz, maxLength: 2, keyboard: Keyboard.Numeric);
+                // string pytanie = ((CustomPin)s).Question;
+                // string odpowiedz = ((CustomPin)s).Answer;
+                await DisplayAlert("Punkt", $"{pinName} został wybrany.", "Ok");
+                await Navigation.PushAsync(new Zagadki());
+                // string result = await DisplayPromptAsync("Zagadka", $"{pytanie}", initialValue: odpowiedz, maxLength: 2, keyboard: Keyboard.Numeric);
 
             };
             customMap.CustomPins = new List<CustomPin> { pin };
