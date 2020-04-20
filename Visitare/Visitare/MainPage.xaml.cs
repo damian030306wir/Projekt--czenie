@@ -53,11 +53,13 @@ namespace Visitare
             {
                 args.HideInfoWindow = true;
                 string pinName = ((CustomPin)s).Label;
-                // string pytanie = ((CustomPin)s).Question;
+                string pytanie = ((CustomPin)s).Question;
+                string opis = ((CustomPin)s).Address;
                 // string odpowiedz = ((CustomPin)s).Answer;
-                await DisplayAlert("Punkt", $"{pinName} został wybrany.", "Ok");
-                await Navigation.PushAsync(new Zagadki());
-                // string result = await DisplayPromptAsync("Zagadka", $"{pytanie}", initialValue: odpowiedz, maxLength: 2, keyboard: Keyboard.Numeric);
+                await DisplayAlert($"{pinName}", $"{opis}", "Ok");
+                await DisplayAlert("Quiz", $"{pytanie}", "Przejdź do odpowiedzi");
+                await Navigation.PushAsync(new QuestionPage(new Question()));
+                
 
             };
             customMap.CustomPins = new List<CustomPin> { pin };
