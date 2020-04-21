@@ -7,12 +7,14 @@
              x:Class="Visitare.QuestionPage">
 
     <StackLayout>
-        <Button Text="Wciśnij aby odpowiedzieć" BackgroundColor="#be8feb" FontAttributes="Bold" HorizontalOptions="FillAndExpand"
+        <Button Text="Wciśnij aby rozpocząć quiz" BackgroundColor="#be8feb" FontAttributes="Bold" HorizontalOptions="FillAndExpand"
                 Margin="0,150" Clicked="Button_Clicked" CornerRadius="25" TextColor="Black"/>
-    
-  
-    <ListView ItemsSource="{Binding Answers}" ItemTapped="ListView_ItemTapped">
-           
-        </ListView>
+
+        <StackLayout>
+            <Label Text="{Binding Text}" TextColor="Black" Margin="10,0"/>
+        </StackLayout>
+        
+      <ListView ItemsSource="{Binding Answers}" ItemTapped="ListView_ItemTapped">
+    </ListView>
     </StackLayout>
 </ContentPage>
